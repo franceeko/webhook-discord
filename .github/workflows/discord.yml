@@ -1,0 +1,15 @@
+name: Discord Webhook
+
+on: [push]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord
+        run: |
+          curl -X POST ${{ secrets.DISCORD_WEBHOOK }} \
+          -H "Content-Type: application/json" \
+          -d '{
+            "content": "🚀 Push novo no repositório"
+          }'
